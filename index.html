@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>DIV Smasher</title>
+		<meta charset="UTF-8" />
+		<style type="text/css">
+			*{
+				user-select:none;
+					-webkit-user-select:none;
+					-moz-user-select:none;
+					-ms-user-select:none;
+					-o-user-select:none;
+				font-family: georgia, calibri, arial;
+			}
+			body{
+				background-color: #000;
+				color:#fff;
+			}
+			div.content.game{
+				position: absolute;
+				height: 600px;
+				width: 800px;
+				border: 2px solid #aaa;
+				margin: -300px 0 0 -425px;
+				background-color: #444;
+				top: 50%;
+				padding: 0 0 0 50px;
+				border-radius: 50px 0 0 50px;
+					-webkit-border-radius: 50px 0 0 50px;
+					-moz-border-radius: 50px 0 0 50px;
+					-ms-border-radius: 50px 0 0 50px;
+					-o-border-radius: 50px 0 0 50px;
+				left: 50%;
+				overflow: hidden;
+			}
+			div.invisi{
+				display: none;
+			}
+			div.content.title{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				margin: -77px 0 0 -300px;
+				z-index: 2;
+			}
+			div#playWrapper{
+				font-family: georgia, cambria, arial;
+				font-size: 25pt;
+				position: absolute;
+			}
+			span{
+				font-size: 15pt;
+				vertical-align: top;
+			}
+			div.pane{
+				position: absolute;
+				z-index:8;
+				height: 200px;
+				box-shadow: 0 0 5px #000 inset;
+					-webkit-box-shadow: 0 0 5px #000 inset;
+					-moz-box-shadow: 0 0 5px #000 inset;
+					-ms-box-shadow: 0 0 5px #000 inset;
+					-o-box-shadow: 0 0 5px #000 inset;
+				border-radius: 5px;
+					-webkit-border-radius: 5px;
+					-moz-border-radius: 5px;
+					-ms-border-radius: 5px;
+					-o-border-radius: 5px;
+				width: 120px;
+				background-color: #ffffff;
+				border: 1px solid black;
+			}
+			div.content.sidebar{
+				position: absolute;
+				height: 600px;
+				border-right: 2px solid #aaa;
+				width: 48px;
+				top: 50%;
+				font-size: 10pt;
+				left: 50%;
+				color: #fff;
+				z-index: 11;
+				text-align: center;
+				margin: -298px 0 0 -423px;
+			}
+			div.content.side{
+				margin-top: 50px;
+			}
+			img#PlayPause{
+				border-bottom: 2px solid #aaa;
+			}
+			img#Title{
+				margin-top: 50px;
+				margin-bottom:10px;
+				width: 700px;
+			}
+			img#MuteUnmute{
+				border-top: 2px solid #aaa;
+			}
+			div#scoreWrapper{
+				margin-top: 149px;
+			}
+			div#playWrapper{
+				margin-top: 0;
+			}
+			div.content.board{
+				height: 600px;
+				width: 800px;
+				position: absolute;
+				border: 2px solid #aaa;
+				margin: -300px 0 0 -375px;
+				top: 50%;
+				text-align: center;
+				left: 50%;
+				background-color: #444;
+				z-index: 7;
+			}
+			hr{
+				margin-bottom: -40px;
+				border-color: #aaa;
+				border-width: 0 0 2px 0;
+			}
+			table{
+				width: 700px;
+				margin-left: 50px;
+				border-collapse: collapse;	
+			}
+			th:first-child{
+				border: 1px solid white;
+				border-width: 0 4px 0 0;
+			}
+			th{
+				font-weight: 100;
+				font-size: 30pt;
+				width: 300px;
+			}
+			td.intro:first-child{
+				border: 1px solid white;
+				border-width: 0 4px 0 0;
+				padding: 0 25px 0 0;
+			}
+			td.intro:last-child{
+				padding: 0 0 0 25px;
+			}
+			td{
+				font-family: calibri, arial;
+				text-align: justify;
+			}
+			b{
+				font-family: calibri, arial;
+				font-size: 15pt;
+			}
+			a{
+				
+				text-decoration: none;
+				font-family: calibri, arial;
+			}
+			a{
+				text-decoration: none;
+				font-family: calibri, arial;
+			}
+			a:hover{
+				text-decoration: underline;
+			}
+			div.content.innerboard{
+				cursor: default;
+			}
+			li.difficulty{
+				color: #fff;
+				display: inline-block;
+				margin: 0;
+				list-style: none;
+				margin-left: 50px;
+				margin-right: 50px;
+			}
+			ul{
+				display: inline-block;
+				margin: 0;
+			}
+			li{
+				text-align: left;
+			}
+			img.titleImg{
+				position: absolute;
+				top: 50%;
+				margin-top: -87px;
+				margin-left: 50px;
+				z-index: 11;
+			}
+		</style>
+	</head>
+	<body> 
+		<div class="wrapper" id="overallWrapper">
+			 
+			<div class="invisi" id="paneTemp">
+				<audio preload id="sound1">
+					<source type="audio/mpeg" src="sounds/effect_1.mp3" />
+					<source type="audio/wav" src="sounds/effect_1.wav" />
+				</audio>
+				<audio preload id="sound2">
+					<source type="audio/mpeg" src="sounds/effect_2.mp3" />
+					<source type="audio/wav" src="sounds/effect_2.wav" />
+				</audio>
+				<audio preload id="sound3">
+					<source type="audio/mpeg" src="sounds/effect_3.mp3" />
+					<source type="audio/wav" src="sounds/effect_3.wav" />
+				</audio>
+				<audio preload id="sound4">
+					<source type="audio/mpeg" src="sounds/effect_4.mp3" />
+					<source type="audio/wav" src="sounds/effect_4.wav" />
+				</audio>
+				<audio preload id="sound5">
+					<source type="audio/mpeg" src="sounds/effect_5.mp3" />
+					<source type="audio/wav" src="sounds/effect_5.wav" />
+				</audio>
+				<div class="pane" onmousedown="removePane(this,1);" id="pane0">
+				</div>
+			</div>
+			<div class="content game" id="gameWrapper">
+			</div>
+			<div class="content sidebar">
+				<div onclick="initGame();" class="content side play" id="playWrapper">
+					<img src='play.png' id="PlayPause" title='Play' alt=''/>
+				</div>
+				<div class="center" id="centerSide">
+					<div class="content side score" id="scoreWrapper">
+						Score<br/><span id="score">0</span>
+					</div>
+					<div class="content side high" id="highScoreWrapper">
+					</div>
+					<div class="content side lives" id="livesWrapper">
+						Lives<br/> <span id="lives">5</span>
+					</div>
+					<div class="content side speed" id="speedWrapper">
+					</div>
+				</div>
+				<div class="content side sound" id="soundWrapper">
+				</div>
+			</div>
+			<div class="content board" id="boardWrapper">
+				<div class="content innerboard">
+					<br/>
+						<b>Change Difficulty:</b>
+						<ul>
+							<li class="difficulty" id="easy"><a onclick="location.hash='easy';">Easy</a></li>
+							<li class="difficulty" id="medium"><a onclick="location.hash='medium';">Medium</a></li>
+							<li class="difficulty" id="hard"><a onclick="location.hash='hard';">Hard</a></li>
+						</ul>
+						<b onclick="window.location.reload()" id="change_difficulty">CHANGE</b>
+					<hr/>
+					<img src='title.png' id="Title"/>
+					<br/>
+					<table>
+						<thead>
+							<th>Instructions</th>
+							<th>What Is This</th>
+						</thead>
+						<tr>
+							<td class="intro">
+								<b>To Start</b><br/>
+								In order to  start just click the play button at the top of the sidebar to the left of this
+								<br/>
+								<b>To Score Points</b><br/>
+								In order to score points, click the divs as they fall to the bottom of the screen.
+								<br/>
+								<b>To Change Difficulty</b><br/>
+								To change the difficulty just click the setting that you wish to use and then click 'CHANGE'
+								<br/>
+								<b>End Game</b>
+								The game will end when you lose all of you five lives. You lose a life each time
+								one of the divs reaches the bottom of the game play area without being clicked 
+							</td>
+							<td  class="intro">
+								This is a simple online game, the aim of which is to score the highest amount of points possible
+								 before you lose all of your lives. Each time a div is caught or a life is lost, a new div is generated .
+								 The game has three difficulty settings. In the first ("Easy"),  every fifty points you score triggers
+								 an extra div to be created. In the second ("Medium"),  every fifty points you score triggers  an
+								 extra div to be created, the speed is 50% faster than easy and the boxes get gradually smaller.
+								 In the last ("Hard"),  every fifty points you score triggers  an extra div to be created, the speed
+								 gradually gets faster as the game progress (this can be tracked int the ) and the boxes get gradually smaller.
+							</td>
+						</tr>
+					</table>
+				</div>
+			</div>	
+		</div>
+		<script type="text/javascript">
+			oSID = 0;
+			play = 0;
+			var browserInfo = {
+				setAll: function(){
+					this.name = this.name(this.data) || "Not Detected";
+					this.version = this.version(navigator.userAgent)  || "Not Detected";
+					this.playability = this.playable();
+				},
+				name: function(data){
+					for(var i=0; i<data.length; i++){
+						var dataString = data[i].bigString;
+						var dataProp = data[i].opera;
+						this.versionSearchString = data[i].versionSearch;
+						if (dataString) {
+							if (dataString.indexOf(data[i].string) != -1)
+								return data[i].name;
+						}
+						else if (dataProp)
+							return data[i].name;
+					}
+				},
+				version: function(data){
+					var index = data.indexOf(this.versionSearchString);
+					if(index == -1) return 76;
+					return parseFloat(data.substring(index+this.versionSearchString.length))
+				},
+				data: [
+					{
+						bigString: navigator.vendor,
+						string: "Apple",
+						versionSearch: "Version/",
+						name: "Apple Safari"
+					},
+					{
+						bigString: navigator.userAgent,
+						string: "Firefox",
+						versionSearch: "Firefox/",
+						name: "Mozilla Firefox"
+					},
+					{
+						opera: window.opera,
+						versionSearch: "Opera ",
+						name: "Opera"
+					},
+					{
+						bigString: navigator.userAgent,
+						string: "MSIE",
+						versionSearch: "MSIE",
+						name: "Microsoft Internet Explorer"
+					},
+					{
+						bigString: navigator.userAgent,
+						string: "iPhone",
+						versionSearch: "Version/",
+						name: "Apple Safari for iPhone or iPod"
+					},
+					{
+						bigString: navigator.userAgent,
+						string: "Android",
+						versionSearch: "Version/",
+						name: "Andriod Mobile Browser"
+					},
+					{
+						bigString: navigator.vendor,
+						string: "Google",
+						versionSearch: "Chrome/",
+						name: "Google Chrome"
+					}
+				],
+				playable: function(){
+					if(this.name != "Not Detected"){
+						switch (this.name){
+							case "Mozilla Firefox":
+								var playable = 3;
+								var perfect = 4;
+								break;
+							case "Microsoft Internet Explorer":
+								var playable = 8;
+								var perfect = 9;
+								break;
+							case "Apple Safari":
+								var playable = 3.1;
+								var perfect = 5;
+								break;
+							case "Opera":
+								var playable = 8;
+								var perfect = 11;
+								break;
+							case "Google Chrome":
+								var playable = 0;
+								var perfect = 4;
+								break;
+							case "Apple Safari for iPhone or iPod":
+								var playable = 3.2;
+								var perfect = 4;
+								break;
+							case "Andriod Mobile Browser":
+								var playable = 2.1;
+								var perfect = 2.3;
+								break;
+						}
+						playability = 1;
+						if(this.version >= playable) playability = 2; 
+						if(this.version >= perfect) playability = 3; 
+						} else {
+						var playability = 0;
+					}
+					return playability;
+				}
+			};
+			browserInfo.setAll();
+			
+			function browserContinue(){
+				play = 1;
+				document.getElementById("boardWrapper").innerHTML="<div class=\"content innerboard\"><br/><b>Change Difficulty:</b><ul><li class=\"difficulty\" id=\"easy\"><a onclick=\"location.hash='easy'\">Easy</a></li><li class=\"difficulty\" id=\"medium\"><a onclick=\"location.hash='medium'\">Medium</a></li><li class=\"difficulty\" id=\"hard\"><a onclick=\"location.hash='hard'\">Hard</a></li></ul><b onclick=\"window.location.reload()\">CHANGE</b><hr/><img src=\"title.png\" id=\"Title\"/><br/><table><thead><th>Instructions</th><th>What Is This</th></thead><tr><td class=\"intro\"><b>To Start</b><br/>In order to  start just click the play button at the top of the sidebar to the left of this<br/><b>To Score Points</b><br/>In order to score points, click the divs as they fall to the bottom of the screen.<br/><b>To Change Difficulty</b><br/>To change the difficulty just click the setting that you wish to use and then click \"CHANGE\"<br/><b>End Game</b>The game will end when you lose all of you five lives. You lose a life each time one of the divs reaches the bottom of the game play area without being clicked </td><td  class=\"intro\">This is a simple online game, the aim of which is to score the highest amount of points possible before you lose all of your lives. Each time a div is caught or a life is lost, a new div is generated . The game has three difficulty settings. In the first (\"Easy\"),  every fifty points you score triggers an extra div to be created. In the second (\"Medium\"),  every fifty points you score triggers  an extra div to be created, the speed is 50% faster than easy and the boxes get gradually smaller. In the last (\"Hard\"),  every fifty points you score triggers  an extra div to be created, the speed gradually gets faster as the game progress (this can be tracked int the ) and the boxes get gradually smaller.</td><tr/></table></div>";
+			}
+			
+			switch(browserInfo.playability){
+				case 0:
+					document.getElementById("boardWrapper").innerHTML="<div class='content innerboard'><br/><b>Notice:</b> <br/>Your web browser has not been recognised as one of the four web browsers that I have test thoroughly with. This means that your browser has not been tested to check that all of its features work. It is recommended that you install a one of the browsers listed below:<br/><br/><ul><ol><li><a href='http://www.google.co.uk/chrome'>Google Chrome</a></li><li><li><a href='http://www.mozilla.org/en-US/firefox/new/'>Mozilla Firefox</a></li><li><a href='http://windows.microsoft.com/en-GB/internet-explorer/downloads/ie'>Microsoft Internet Explorer</a></li><li><a href='http://www.apple.com/safari/download/'>Apple Safari</a></li></ol><br/><br/><a onclick='browserContinue()'>Alternatively, you could click here to continue with your current browser. This is unrecommended as you may find that one or more of the features (such as the pause feature) may not work properly</a></div>";
+					play = 0;
+					break;
+				case 1:
+					document.write("<meta http-equiv='refresh' content='0;url=safe.html'/>");
+					play = 0;
+					break;
+				case 2:
+					document.getElementById("boardWrapper").innerHTML="<div class='content innerboard'><br/><b>Notice:</b> <br/>Your web browser has been identified as "+ browserInfo.name + ", version " + browserInfo.version + ". However, This version is only partially compatible with this game, which means that all of the features will work properly, but some of them would be improved by updating your browser because it is too old and does not support the methods used to make this game work. To gain the best experience while playing the game  please install or update a one of the browsers listed below:<br/><br/><ol><li><a href='http://www.google.co.uk/chrome'>Google Chrome</a></li><li><a href='http://www.opera.com/'>Opera</a></li><li><a href='http://www.mozilla.org/en-US/firefox/new/'>Mozilla Firefox</a></li><li><a href='http://windows.microsoft.com/en-GB/internet-explorer/downloads/ie'>Microsoft Internet Explorer</a></li><li><a href='http://www.apple.com/safari/download/'>Apple Safari</a></li></ol><a onclick='browserContinue()'><br/><br/>Alternatively, you could click here to continue with your current browser.</a></div>";
+					play = 0;
+					break;
+				case 3:
+					play = 1;
+					break;
+			}
+			
+			score = 0;
+			sound=1;
+			playing = 0;
+			lives = 5;
+			widthMultiplier = 300;
+			heightMultiplier = 300;
+			
+			function soundChange(){
+				if(sound==1){
+					document.getElementById("soundWrapper").innerHTML="<img src=\'mute.png\' onclick=\'soundChange()\' id=\'MuteUnmute\' title=\'Play\' alt=\'\'/>";
+					sound=0;
+					(browserInfo.playability == 3) ? localStorage.volume = 0 : sound = 0;
+				} else {
+					document.getElementById("soundWrapper").innerHTML="<img src=\'unmute.png\' onclick=\'soundChange()\' id=\'MuteUnmute\' title=\'Play\' alt=\'\'/>";
+					sound=1;
+					(browserInfo.playability == 3) ? localStorage.volume = 1 : sound = 1;
+				 }
+			}
+			function newScore(){
+				score++;
+				document.getElementById("score").innerHTML=score;
+				if(browserInfo.playability == 3){
+					if(score >= highScore){
+						(difficulty == 3) ? localStorage.highScoreHard = score : (difficulty == 2) ? localStorage.highScoreMedium = score : localStorage.highScoreEasy = score;
+						document.getElementById("highScore").innerHTML=score;
+					}
+				}
+			}
+			
+			function soundPlay(){
+				var sID = Math.ceil(Math.random()*5);
+				(oSID != sID) ? sID = sID : (sID == 1) ? sID++ : sID--;
+				document.getElementById("sound"+sID).currentTime=0;
+				document.getElementById("sound"+sID).play();
+				oSID = sID;
+			}
+			
+			function removePane(pane, scoreIt){
+				if(playing==1){
+					if(scoreIt == 1 && sound == 1){
+						soundPlay();
+					}
+					var parent = pane.parentNode;
+					if (pane == parent){} 
+					else {
+						parent.removeChild(pane);
+					}
+					if(scoreIt == 1){
+						newScore();
+					}
+					makePane(++counters[3]);
+					if(difficulty>=1){
+						if(counters[4]==50){
+							makePane(++counters[3]);
+							counters[4] = 0;
+						} else {
+							counters[4]++;
+						}
+					}
+				}
+			}
+			function makePane(a){
+				var original = document.getElementById("pane0").cloneNode(false);
+				original.getAttributeNode("id").value="pane"+a;
+				document.getElementById("gameWrapper").appendChild(original);
+				var fullPW = Math.ceil(Math.random()*widthMultiplier)+50;
+				var fullPH = Math.ceil(Math.random()*heightMultiplier)+50;
+				paneTop[a]=fullPH;
+				paneHeight[a]=fullPH;
+				original.style.height=fullPH+"px";
+				original.style.width=fullPW+"px";
+				var c = new Array();
+				for(var i=5;i>=0;i--){
+					var x = Math.floor(Math.random()*15.9);
+					switch(x){
+						case 0:
+							c[i]="0";
+							break;
+						case 1:
+							c[i]="1";
+							break;
+						case 2:
+							c[i]="2";
+							break;
+						case 3:
+							c[i]="3";
+							break;
+						case 4:
+							c[i]="4";
+							break;
+						case 5:
+							c[i]="5";
+							break;
+						case 6:
+							c[i]="6";
+							break;
+						case 7:
+							c[i]="7";
+							break;
+						case 8:
+							c[i]="8";
+							break;
+						case 9:
+							c[i]="9";
+							break;
+						case 10:
+							c[i]="A";
+							break;
+						case 11:
+							c[i]="B";
+							break;
+						case 12:
+							c[i]="C";
+							break;
+						case 13:
+							c[i]="D";
+							break;
+						case 14:
+							c[i]="E";
+							break;
+						case 15:
+							c[i]="F";
+							break;
+					}
+				}
+				var colour = c[0].concat(c[1],c[2],c[3],c[4],c[5]);
+				original.style.backgroundColor="#"+colour;
+				var halfSW=innerWidth/2;
+				var leftPane = Math.floor(Math.random()*800)-fullPW;
+				if (leftPane < 50){
+					leftPane=50;
+				}
+				original.style.left=leftPane+"px";
+				original.style.top="-"+fullPH+"px";
+			}
+			function lifeloss(){
+				lives--;
+				document.getElementById("lives").innerHTML=lives;
+				if(lives==0){
+					playing=0;
+					endGame()
+				}
+			}
+			function move(count){
+				var subCount = count;
+				if(difficulty >= 3){
+					score=score*10;
+					score=Math.ceil(score);
+					score=score/10;
+					speed = (score/20)+3;
+				} else {
+					speed = 3;
+				}
+				for(subCount = count;subCount>0;subCount--){
+					if (document.getElementById("pane"+subCount)) {
+						var preTop=paneTop[subCount];
+						(difficulty == 3) ? document.getElementById("speed").innerHTML=speed : (difficulty == 2) ? speed = 4.5 : speed = 3;
+						var newTop=preTop+speed;
+						useTop = newTop-(paneHeight[subCount]*2);
+						paneTop[subCount] = newTop;
+						var top = document.getElementById("pane"+subCount).style.top=useTop+"px"; 
+						if(useTop >= 600){
+							removePane(document.getElementById("pane"+subCount), 0);
+							lifeloss();
+						}
+					} else {}
+				}
+			}
+			
+			function update(){
+				if(playing==1){
+					counters[0]++;
+					move(counters[0]);
+					if(difficulty >= 2){
+						if(counters[2]==200){
+							if(heightMultiplier > 50){
+								counters[2]=0;
+								heightMultiplier = heightMultiplier - 30;
+								widthMultiplier = widthMultiplier - 30;
+							} else {
+								widthMultiplier = 50;
+								heightMultiplier = 50;
+							}
+						}else{
+							counters[2]++;
+						}
+					}
+				}
+			}
+			function endGame(){
+				document.getElementById("playWrapper").innerHTML="<img src='replay.png' id=\'PlayPause\' title='Play Again' alt=''/>";
+				document.getElementById("boardWrapper").innerHTML="<div class='content innerboard'><br/><b>Game Over</b><hr/><img src='title.png' id='Title'/><br/><table><thead><th>Instructions</th><th>What Is This</th></thead><tr><td class='intro'><b>To Start</b><br/>In order to  start just click the play button at the top of the sidebar to the left of this<br/><br/><b>To Score Points</b><br/>In order to score points, click the boxes as they fall to the bottom of the screen.<br/><br/><b>End Game</b><br/>The game will end when you lose all of you five lives. You lose a life each time one of the boxes reaches the bottom of the game play area without being clicked </td><td class='intro'>This is a simple online game, the aim of which is to score the highest amount of points possible before you lose all of your lives. Each time a div is caught or a life is lost, a new div is generated . The game has three difficulty settings. In the first (\"Easy\"),  every fifty points you score triggers an extra div to be created. In the second (\"Medium\"),  every fifty points you score triggers  an extra div to be created, the speed is 50% faster than easy and the boxes get gradually smaller. In the last (\"Hard\"),  every fifty points you score triggers  an extra div to be created, the speed gradually gets faster as the game progress and the boxes get gradually smaller.</td><tr/></table></div>";
+				document.getElementById("boardWrapper").style.cssText="z-index:10;";
+				document.getElementById("playWrapper").setAttribute("onclick","location.reload()");
+			}
+			function pauseGame(){
+				if(playing==1){
+					playing=0;
+					document.getElementById("playWrapper").innerHTML="<img src='play.png' id=\'PlayPause\' title='Play' alt=''/>";
+					document.getElementById("boardWrapper").innerHTML="<div class='content innerboard'><br/><b>Game Paused</b><hr/><img src='title.png' id='Title'/><br/><table><thead><th>Instructions</th><th>What Is This</th></thead><tr><td class='intro'><b>To Start</b><br/>In order to  start just click the play button at the top of the sidebar to the left of this<br/><br/><b>To Score Points</b><br/>In order to score points, click the boxes as they fall to the bottom of the screen.<br/><br/><b>End Game</b><br/>The game will end when you lose all of you five lives. You lose a life each time one of the boxes reaches the bottom of the game play area without being clicked </td><td class='intro'>This is a simple online game, the aim of which is to score the highest amount of points possible before you lose all of your lives. Each time a div is caught or a life is lost, a new div is generated . The game has three difficulty settings. In the first (\"Easy\"),  every fifty points you score triggers an extra div to be created. In the second (\"Medium\"),  every fifty points you score triggers  an extra div to be created, the speed is 50% faster than easy and the boxes get gradually smaller. In the last (\"Hard\"),  every fifty points you score triggers  an extra div to be created, the speed gradually gets faster as the game progress and the boxes get gradually smaller.</td><tr/></table></div>";
+					document.getElementById("boardWrapper").style.cssText="z-index:10;";
+				}else{
+					playing=1;
+					document.getElementById("playWrapper").innerHTML="<img src='pause.png' id=\'PlayPause\' title='Pause' alt=''/>";
+					document.getElementById("boardWrapper").innerHTML="";
+					document.getElementById("boardWrapper").style.cssText="z-index:7;";
+				}
+			}
+			
+			function layoutSidebar(sound, score){
+				document.getElementById("soundWrapper").style.marginTop=sound+"px";
+				document.getElementById("centerSide").style.marginTop=score+"px";
+			}
+			
+			function load(){	
+				switch(location.hash){
+					case "#easy":
+						difficulty = 1;
+						document.getElementById("speedWrapper").innerHTML="";
+						document.getElementById("easy").style.color="#000";	
+						if(browserInfo.playability == 3){
+							layoutSidebar(88,180);
+							if(localStorage.highScoreEasy){
+								document.getElementById("highScoreWrapper").innerHTML= "High Score<br/><span id='highScore'>" + localStorage.highScoreEasy + "</span>";
+								document.getElementById("soundWrapper").innerHTML= "<img src='unmute.png' onclick='soundChange();'  id='MuteUnmute' title='Play' alt=''/>";
+							} else {
+								localStorage.highScoreEasy=0;
+								document.getElementById("highScoreWrapper").innerHTML= "High Score<br/><span id='highScore'>0</span>";
+							}
+							highScore=localStorage.highScoreEasy;
+						} else {
+							layoutSidebar(0,0);
+						}
+						break;
+					case "#medium":
+						difficulty = 2;
+						document.getElementById("speedWrapper").innerHTML="";
+						document.getElementById("medium").style.color="#000";
+						
+						if(browserInfo.playability == 3){
+							layoutSidebar(88,180);	
+							if(localStorage.highScoreMedium){
+								document.getElementById("highScoreWrapper").innerHTML= "High Score<br/><span id='highScore'>" + localStorage.highScoreMedium + "</span>";
+							} else {
+								localStorage.highScoreMedium=0;
+								document.getElementById("highScoreWrapper").innerHTML= "High Score<br/><span id='highScore'>0</span>";
+							}
+							highScore=localStorage.highScoreMedium;
+						} else {
+							layoutSidebar(74,194);
+						}
+						break;
+					case "#hard":
+						difficulty = 3;
+						document.getElementById("speedWrapper").innerHTML="Speed<br/> <span id='speed'>3</span>";
+						document.getElementById("hard").style.color="#000";
+						if(browserInfo.playability == 3){
+							layoutSidebar(30, 100);
+							if(localStorage.highScoreHard){
+								document.getElementById("highScoreWrapper").innerHTML= "High Score<br/><span id='highScore'>" + localStorage.highScoreHard + "</span>";
+							} else {
+								localStorage.highScoreHard=0;
+								document.getElementById("highScoreWrapper").innerHTML= "High Score<br/><span id='highScore'>0</span>";
+							}
+							highScore=localStorage.highScoreHard;
+						} else{
+							layoutSidebar(29, 149);
+						}
+						break;
+					default:
+						location.hash="#easy";
+						difficulty = 1;
+						document.getElementById("easy").style.color="#000";
+						if(browserInfo.playability == 3){	
+							if(localStorage.highScoreEasy){
+								document.getElementById("highScoreWrapper").innerHTML= "High Score<br/><span id='highScore'>" + localStorage.highScoreEasy + "</span>" ;
+							} else {
+								localStorage.highScoreEasy=0;
+								document.getElementById("highScoreWrapper").innerHTML= "High Score<br/><span id='highScore'>0</span>";
+							}
+							highScore=localStorage.highScoreEasy;
+						}
+				}
+				if(browserInfo.playability == 3){
+					if(localStorage.volume){
+						if(localStorage.volume == 1){
+							sound = 1;
+							document.getElementById("soundWrapper").innerHTML="<img src=\'unmute.png\' onclick=\'soundChange()\' id=\'MuteUnmute\' title=\'Play\' alt=\'\'/>";
+						} else {
+							sound = 0;
+							document.getElementById("soundWrapper").innerHTML="<img src=\'mute.png\' onclick=\'soundChange()\' id=\'MuteUnmute\' title=\'Play\' alt=\'\'/>";
+						}
+					} else {
+						localStorage.volume = 1;
+					}
+				}
+			}
+			
+			function initGame(){
+				if(play == 1){
+					counters=new Array(0,0,0,0,0);
+					paneWidths=new Array();
+					paneHeight=new Array();
+					paneTop=new Array();
+					playing = 1;
+					speed = 3;
+					makePane(++counters[3]);
+					document.getElementById("playWrapper").setAttribute("onclick","pauseGame()");
+					document.getElementById("boardWrapper").innerHTML="";
+					document.getElementById("playWrapper").innerHTML='<img src=\'pause.png\' id=\'PlayPause\' title=\'Play\' alt=\'\'/>';
+					setInterval("update();", 20);
+				}
+			}
+			load();
+		</script>
+		
+			<noscript>
+				<meta http-equiv="refresh" content="0;url=safe.html"/>
+			</noscript>
+	</body>
+</html>

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>DIV Smasher</title>
+		<meta charset="UTF-8" />
+		<style type="text/css">
+			body{
+				background-color: #444444;
+				color: #ffffff;
+			}
+			table{
+				width: 700px;
+				border-collapse: collapse;
+				border-color: #aaaaaa;
+				margin: auto;
+				border-width: 3px;
+			}
+			th{
+				border-collapse: collapse;
+				border-color: #aaaaaa;
+				font-family: georgia, cambria, times;
+				font-size: 15pt;
+				font-weight: 100;
+			}
+			th#bigTitle{
+				font-size: 40pt;
+			}
+			th#subTitle{
+				font-size: 30pt;
+			}
+			th#JSDisabled{
+				width: 350px;
+			}
+			th#OODBrowser{
+				width: 350px;
+			}
+			table{
+				width: 800px;
+				border-collapse: collapse;
+				border-color: #aaaaaa;
+			}
+			td{
+				border-color: #aaaaaa;
+				vertical-align: top;
+				padding: 10px 50px;
+			}
+			i#reason{
+				font-size: 20pt;
+			}
+			a{
+				color: #fff;
+			}
+		</style>
+	</head>
+	<body> 
+		<table border="1">
+			<thead>
+				<tr>
+					<th id="bigTitle" colspan="2">
+						Safe Page
+					</th>
+				</tr>
+				<tr>
+					<th id="subTitle" colspan="2">
+						Why have you been sent here?<br/>
+						<i id="reason"><script type="text/javascript">document.write("Out of Date Browser")</script><noscript>JavaScript Disabled</noscript></i>
+					</th>
+				</tr>
+				<tr/>
+					<th id="JSDisabled">
+						Javascript Disabled
+					</th>
+					<th id="OODBrowser">
+						Out of Date Browser
+					</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						If your web browser has not got JavaScript enabled, the game will not work. This is because it uses javascript to do pretty much everything.<br/>
+						<br/>
+						If you want to play DIVSmasher you will need to enable JavasScript or add <i>https://chrimea.commoncreator.co.uk/div_smasher</i> as an exception.
+					</td>
+					<td>
+						The browser you are using is not supported. This means that it has been tested and the game does not work in it, it may not work because it is an older version and needs to be updated. 
+						The list below shows all the browsers that have been tested and are fully suported.
+						<ol>
+							<li><a href='http://www.google.co.uk/chrome'>Google Chrome</a></li>
+							<li><a href='http://www.opera.com/'>Opera</a></li>
+							<li><a href='http://www.mozilla.org/en-US/firefox/new/'>Mozilla Firefox</a></li>
+							<li><a href='http://windows.microsoft.com/en-GB/internet-explorer/downloads/ie'>Microsoft Internet Explorer</a></li>
+							<li><a href='http://www.apple.com/safari/download/'>Apple Safari</a></li>
+						</ol>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
